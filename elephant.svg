@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Clean line sketch of an elephant">
+  <rect width="800" height="600" fill="#ffffff"/>
+  <g fill="none" stroke="#111111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- forehead + trunk outer edge + curled tip -->
+    <path d="M282 166
+             C 204 172 152 214 146 262
+             C 122 320 112 396 124 444
+             C 136 488 192 500 216 466
+             C 234 442 224 414 200 418
+             C 186 420 184 438 174 442"/>
+
+    <!-- trunk inner edge up to the mouth -->
+    <path d="M174 442
+             C 156 448 148 422 149 398
+             C 150 342 164 300 196 270
+             C 210 292 222 308 238 318"/>
+
+    <!-- cheek and chest down into the front leg, belly, hind leg, rump and back -->
+    <path d="M246 324
+             C 272 344 290 372 300 402
+             C 302 428 302 452 302 496
+             C 302 512 310 518 324 518
+             L 356 518
+             C 370 518 376 510 374 496
+             C 371 462 371 430 372 402
+             C 420 426 470 430 516 412
+             C 515 440 514 470 516 496
+             C 517 511 524 518 538 518
+             L 572 518
+             C 586 518 592 510 592 496
+             L 592 400
+             C 616 376 646 348 648 300
+             C 650 236 600 190 520 172
+             C 442 154 336 150 282 166"/>
+
+    <!-- trunk wrinkles -->
+    <path d="M131 318 q 16 -8 30 -4"/>
+    <path d="M120 362 q 16 -8 30 -4"/>
+    <path d="M117 406 q 16 -8 30 -4"/>
+    <path d="M126 444 q 14 -10 28 -8"/>
+
+    <!-- tusk -->
+    <path d="M250 324 C 246 356 230 384 200 398
+             C 222 372 232 346 230 320"/>
+
+    <!-- ear -->
+    <path d="M298 176
+             C 372 194 400 264 370 330
+             C 346 382 296 402 256 386"/>
+    <path d="M314 214 C 360 234 372 288 350 330 C 336 356 312 372 288 374"/>
+
+    <!-- eye and brow -->
+    <circle cx="220" cy="256" r="11" fill="#111111" stroke="none"/>
+    <path d="M196 226 C 210 214 232 214 244 224"/>
+
+    <!-- far front leg -->
+    <path d="M400 424 L 400 500 C 400 514 408 520 421 520 L 449 520 C 462 520 468 512 467 500 L 464 424"/>
+    <!-- far hind leg -->
+    <path d="M602 404 L 602 500 C 602 514 610 520 623 520 L 650 520 C 663 520 668 512 667 500 L 664 400"/>
+
+    <!-- toenails -->
+    <g stroke-width="5">
+      <path d="M313 518 L 313 502"/><path d="M331 518 L 331 500"/><path d="M349 518 L 349 502"/>
+      <path d="M528 518 L 528 502"/><path d="M546 518 L 546 500"/><path d="M564 518 L 564 502"/>
+      <path d="M414 520 L 414 506"/><path d="M432 520 L 432 504"/><path d="M450 520 L 450 506"/>
+      <path d="M616 520 L 616 506"/><path d="M634 520 L 634 504"/><path d="M652 520 L 652 506"/>
+    </g>
+
+    <!-- tail -->
+    <path d="M646 316 C 690 342 706 388 696 430"/>
+    <path d="M696 430 c 12 10 14 26 6 40 c -14 -6 -22 -22 -18 -38"/>
+
+    <!-- ground -->
+    <path d="M104 542 L 716 542" stroke-width="5"/>
+  </g>
+</svg>
