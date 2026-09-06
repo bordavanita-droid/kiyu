@@ -1,0 +1,24 @@
+{
+  "link": "https://www.pinemb.in/",
+  "brand": "Pin Embroidery",
+  "timezone": "Asia/Kolkata",
+  "post_time_local": "10:00",
+  "rotation_start": "2026-09-07",
+
+  "facebook": {
+    "enabled": true,
+    "zapier_tool": "facebook_pages_create_page_post",
+    "page_id": "REPLACE_AFTER_RECONNECT"
+  },
+
+  "instagram": {
+    "enabled": true,
+    "zapier_tool": "instagram_for_business_publish_photo_s",
+    "instagram_page_id": "REPLACE_AFTER_RECONNECT"
+  },
+
+  "images": {
+    "raw_url_base": "https://raw.githubusercontent.com/bordavanita-droid/kiyu/refs/heads/claude/agent-daily-social-messaging-wzgkqk/content/images",
+    "dir": "content/images"
+  }
+}
