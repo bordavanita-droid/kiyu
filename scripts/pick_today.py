@@ -68,21 +68,38 @@ def main():
         caption = f"{caption}\n{link}"
     image = images[day_index % len(images)]
 
+    fb, ig = config["facebook"], config["instagram"]
+    day = today.isoformat()
+
+    def should_post(channel, cfg, id_key):
+        """A channel posts only if enabled, wired up, and not already done today."""
+        if not cfg.get("enabled"):
+            return False, "disabled in config.json"
+        if "REPLACE" in cfg[id_key]:
+            return False, "channel id not configured"
+        if already_posted_ok(day, channel):
+            return False, "already posted successfully today"
+        return True, None
+
+    post_fb, fb_reason = should_post("facebook", fb, "page_id")
+    post_ig, ig_reason = should_post("instagram", ig, "instagram_page_id")
+
     print(json.dumps({
-        "date": today.isoformat(),
+        "date": day,
         "day_index": day_index,
         "caption_index": day_index % len(captions),
         "caption": caption,
         "image": image,
         "image_url": f"{config['images']['raw_url_base']}/{image}",
         "link": link,
-        "facebook_page_id": config["facebook"]["page_id"],
-        "instagram_page_id": config["instagram"]["instagram_page_id"],
-        "skip_facebook": already_posted_ok(today.isoformat(), "facebook"),
-        "skip_instagram": already_posted_ok(today.isoformat(), "instagram"),
-        "configured": "REPLACE_AFTER_RECONNECT" not in (
-            config["facebook"]["page_id"] + config["instagram"]["instagram_page_id"]
-        ),
+        "facebook": {
+            "post": post_fb, "skip_reason": fb_reason, "page_id": fb["page_id"],
+        },
+        "instagram": {
+            "post": post_ig, "skip_reason": ig_reason,
+            "instagram_page_id": ig["instagram_page_id"],
+            "account_name": ig.get("account_name"),
+        },
     }, indent=2, ensure_ascii=False))
 
 

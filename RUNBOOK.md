@@ -5,9 +5,15 @@ agent does; edit the Routine only to change *when* it runs.
 
 ## 0. Preconditions
 
-Read `config.json`. If `facebook.page_id` or `instagram.instagram_page_id` is still
-`REPLACE_AFTER_RECONNECT`, **stop** and report that the Zapier connections have not been
-wired yet. Do not attempt to post.
+Run `python3 scripts/pick_today.py`. It reports, per channel, whether to post and why not
+if it is skipping. A channel is skipped when it is `enabled: false` in `config.json`, its
+account id is still a `REPLACE_...` placeholder, or it already posted successfully today.
+
+If **both** channels come back `"post": false`, there is nothing to do — log a skipped
+entry and stop. Never post to a channel the script says to skip.
+
+As of setup: Instagram is live (account **OMEE**); Facebook is disabled pending a
+reconnect that grants Page access. See `README.md`.
 
 ## 1. Pick today's content
 
@@ -31,15 +37,16 @@ python3 scripts/pick_today.py
 
 ## 2. Duplicate guard
 
-Read `log/posted.jsonl`. If a line for today's date already has `"status": "ok"` for a
-channel, **skip that channel** and log it as `skipped`. This protects against a double
-fire or a manual re-run.
+Already handled by `pick_today.py`: if `log/posted.jsonl` has a line for today's date with
+`"status": "ok"` for a channel, that channel comes back `"post": false`. This protects
+against a double fire or a manual re-run. Log it as `skipped`.
 
 ## 3. Post to Facebook
 
 `execute_zapier_write_action` with:
 
 - `tool_name`: `facebook_pages_create_page_post`
+- `selected_api`: `FacebookV2CLIAPI`
 - `page`: `config.facebook.page_id`
 - `message`: the caption
 - `link_url`: `config.link` — this renders as a real clickable link preview
@@ -50,7 +57,8 @@ fire or a manual re-run.
 `execute_zapier_write_action` with:
 
 - `tool_name`: `instagram_for_business_publish_photo_s`
-- `instagramPageId`: `config.instagram.instagram_page_id`
+- `selected_api`: `InstagramBusinessCLIAPI`
+- `instagramPageId`: `config.instagram.instagram_page_id` (account **OMEE**)
 - `media`: `[image_url]` — Meta fetches this URL server-side, so it must be publicly
   reachable. The repo is public, so `raw.githubusercontent.com` works.
 - `caption`: the caption
@@ -83,5 +91,6 @@ Common failures:
 |---|---|---|
 | `Session has expired` / `Error validating access token` | Facebook OAuth token lapsed | Reconnect Facebook Pages in Zapier |
 | `Authorization access_token missing` | Instagram connection dropped | Reconnect Instagram for Business in Zapier |
+| Facebook Page dropdown is empty | Connection authorized without Page access | Reconnect Facebook in Zapier and tick the Page |
 | Instagram rejects the media | Image URL not publicly reachable, or wrong format/size | Confirm the raw URL returns 200 and the file is JPG/PNG |
 | Post succeeds but no link preview on Facebook | `link_url` omitted | Include `link_url` |

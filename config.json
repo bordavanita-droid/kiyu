@@ -6,15 +6,19 @@
   "rotation_start": "2026-09-07",
 
   "facebook": {
-    "enabled": true,
+    "enabled": false,
+    "_disabled_reason": "The Zapier Facebook connection returns an empty Page list - it was authorized without Page access. Reconnect it and grant access to the Page, then set page_id and flip enabled to true. Reconnect URL is in README.md.",
+    "zapier_selected_api": "FacebookV2CLIAPI",
     "zapier_tool": "facebook_pages_create_page_post",
     "page_id": "REPLACE_AFTER_RECONNECT"
   },
 
   "instagram": {
     "enabled": true,
+    "zapier_selected_api": "InstagramBusinessCLIAPI",
     "zapier_tool": "instagram_for_business_publish_photo_s",
-    "instagram_page_id": "REPLACE_AFTER_RECONNECT"
+    "instagram_page_id": "17841405034354105",
+    "account_name": "OMEE"
   },
 
   "images": {

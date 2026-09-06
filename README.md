@@ -41,6 +41,26 @@ changing rather than repeating in lockstep.
 status or error. It is also the duplicate guard: a channel already marked `ok` for today
 will not be posted to twice.
 
+## Channel status
+
+| Channel | Status |
+|---|---|
+| **Instagram** (`OMEE`) | Live — posting daily |
+| **Facebook Page** | **Disabled** — needs a reconnect, see below |
+
+### Turning Facebook on
+
+The Zapier Facebook connection is authenticated but returns an **empty Page list**, which
+means it was authorized without access to the Page. To fix:
+
+1. Reconnect Facebook, and when Facebook asks which Pages to allow, **tick the pinemb
+   Page** (do not skip that screen):
+   https://mcp.zapier.com/api/v1/connect-auth/FacebookV2CLIAPI?accountId=12392537&connectionId=65912764
+2. Tell Claude to finish wiring Facebook — it will read the Page ID, put it in
+   `config.json`, and flip `facebook.enabled` to `true`.
+
+Instagram posting is unaffected by this and continues either way.
+
 ## Notes
 
 - Instagram captions never render clickable links. The URL is in the caption to be read
